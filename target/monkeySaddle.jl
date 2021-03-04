@@ -12,7 +12,7 @@ d1 = [readdlm("d1.csv.res")[1:end-1]...];
 a = minimum(d1); b = maximum(d1);
 
 for idx in CartesianIndices(zs)
-	zs[idx] = normalize(zs[idx], minimum(zs), maximum(zs), a*2, b*2)
+	zs[idx] = normalize(zs[idx], minimum(zs), maximum(zs), a, b)
 end
 
 open("d2.csv.res", "w") do file

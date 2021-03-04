@@ -38,16 +38,16 @@ void make_membrane(CVoxelyze *Vx, vector<Vec3D<int>> fiber_pos)
 {
 
     CVX_Material *silicone = Vx->addMaterial(ES, RHO);
-    silicone->setColor(102, 255, 102, 60);
+    silicone->setColor(0, 255, 0, 255);
     silicone->setInternalDamping(1.0);
 
     CVX_Material *expand = Vx->addMaterial(EE, RHO);
     expand->setCte(0.06);
-    expand->setColor(102, 255, 102, 60);
+    expand->setColor(0, 255, 0, 255);
     expand->setInternalDamping(1.0);
 
     CVX_Material *fiber = Vx->addMaterial(EF, RHO);
-    fiber->setColor(277, 38, 54, 255);
+    fiber->setColor(255, 0, 0, 255);
     fiber->setInternalDamping(1.0);
 
     double center = (DIM / 2) + 0.5;

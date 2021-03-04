@@ -24,7 +24,7 @@ function eyeposTop(cord)
     x_avg = sum(cord[:, 1])/sz
     y_avg = sum(cord[:, 2])/sz
     z_avg = sum(cord[:, 3])/sz
-    return Vec3f0((25*0.0028), (25*0.0028), (70*0.0028))
+    return Vec3f0(x_avg+0.0028, y_avg+0.0028, z_offset*4)
 end
 
 function eyeposBot(cord)
@@ -32,7 +32,7 @@ function eyeposBot(cord)
     x_avg = sum(cord[:, 1])/sz
     y_avg = sum(cord[:, 2])/sz
     z_avg = sum(cord[:, 3])/sz
-    return Vec3f0((25*0.0028), (25*0.0028), -(70*0.0028))
+    return Vec3f0(x_avg+0.0028, y_avg+0.0028, -z_offset*4)
 end
 
 function lookat(cord)
@@ -72,13 +72,14 @@ m = GeometryBasics.Mesh(vertices, faces)
 wireframe!(scene, m, color=RGBA(0.4, 1.0, 0.4, 0.5))
 mesh!(scene, m, color=colors)
 
-update_cam!(scene, eyepos(xy), lookat(xy))
+update_cam!(scene, eyeposTop(xy), lookat(xy))
 Makie.save("target/D$(D)Top.png", scene)
 
-update_cam!(scene, eyepos(xy), lookat(xy))
+update_cam!(scene, eyeposBot(xy), lookat(xy))
 Makie.save("target/D$(D)Bot.png", scene)
 
-
+update_cam!(scene, eyepos(xy), lookat(xy))
+Makie.save("target/D$(D)Prev.png", scene)
 
 scene = Scene(backgroundcolor=:black, show_axis=false, center=false)
 xy, vertices, faces, colors = get_mesh(1)
@@ -92,41 +93,28 @@ Makie.save("target/D$(D).png", scene)
 
 
 
+if Seed < 100
+    scene = Scene(backgroundcolor=:black, show_axis=false, center=false)
+    xy, vertices, faces, colors = get_mesh(2)
+    m = GeometryBasics.Mesh(vertices, faces)
+    wireframe!(scene, m, color=RGBA(0.4, 1.0, 0.4, 0.5))
+    mesh!(scene, m, color=colors)
 
-scene = Scene(backgroundcolor=:black, show_axis=false, center=false)
-xy, vertices, faces, colors = get_mesh(2)
-m = GeometryBasics.Mesh(vertices, faces)
-wireframe!(scene, m, color=RGBA(0.4, 1.0, 0.4, 0.5))
-mesh!(scene, m, color=colors)
+    update_cam!(scene, eyeposTop(xy), lookat(xy))
+    Makie.save("resTop-D$D-Seed-$Seed.png", scene)
 
-update_cam!(scene, eyepos(xy), lookat(xy))
-Makie.save("resTop-D$D-Seed-$Seed.png", scene)
-
-update_cam!(scene, eyepos(xy), lookat(xy))
-Makie.save("resBot-D$D-Seed-$Seed.png", scene)
-
-
-
-scene = Scene(backgroundcolor=:black, show_axis=false, center=false)
-xy, vertices, faces, colors = get_mesh(3)
-m = GeometryBasics.Mesh(vertices, faces)
-wireframe!(scene, m, color=RGBA(0.4, 1.0, 0.4, 0.5))
-mesh!(scene, m, color=colors)
+    update_cam!(scene, eyeposBot(xy), lookat(xy))
+    Makie.save("resBot-D$D-Seed-$Seed.png", scene)
 
 
-update_cam!(scene, eyepos(xy), lookat(xy))
-Makie.save("res-D$D-Seed-$Seed.png", scene)
 
-#=m = Node(msh)
-coordinates = lift(m -> m[1], m)
-connectivity = lift(m -> m[2], m)
-colors = lift(m -> m[3], m)
-mesh!(scene, coordinates, connectivity, color=colors)
-update_cam!(scene, eyepos(msh[1]), lookat(msh[1]))
-seye = eyepos(msh[1])
+    scene = Scene(backgroundcolor=:black, show_axis=false, center=false)
+    xy, vertices, faces, colors = get_mesh(3)
+    m = GeometryBasics.Mesh(vertices, faces)
+    wireframe!(scene, m, color=RGBA(0.4, 1.0, 0.4, 0.5))
+    mesh!(scene, m, color=colors)
 
-record(scene, "video.mp4", 0:n; framerate=2) do i
-    msh = get_mesh(i)
-    m[] = msh
-    update_cam!(scene, eyepos(msh[1]), lookat(msh[1]))
-end=#
+
+    update_cam!(scene, eyepos(xy), lookat(xy))
+    Makie.save("res-D$D-Seed-$Seed.png", scene)
+end

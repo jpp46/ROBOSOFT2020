@@ -132,18 +132,20 @@ double error(vector<Vec3D<int>> fiber_pos, vector<Vec3D<double>> points)
 int main(int argc, char *argv[])
 {
     cout << "running" << endl;
-    vector<string> sim_paths{"results/best/Bezier-D1-Seed-0.csv", "results/best/Bezier-D1-Seed-1.csv",
-                             "results/best/Bezier-D1-Seed-2.csv", "results/best/Bezier-D1-Seed-3.csv",
-                             "results/best/Bezier-D2-Seed-0.csv", "results/best/Bezier-D2-Seed-1.csv",
-                             "results/best/Bezier-D2-Seed-2.csv"};
+    vector<string> sim_paths{
+        "results/best/Bezier-D1-Seed-0.csv", "results/best/Bezier-D1-Seed-1.csv", "results/best/Bezier-D1-Seed-2.csv",
+        "results/best/Bezier-D1-Seed-3.csv", "results/best/Bezier-D2-Seed-0.csv", "results/best/Bezier-D2-Seed-1.csv",
+        "results/best/Bezier-D2-Seed-2.csv", "results/best/Bezier-D2-Seed-3.csv", "results/best/Bezier-D2-Seed-4.csv",
+        "results/best/Bezier-D2-Seed-5.csv", "results/best/Bezier-D2-Seed-6.csv"};
     vector<string> real_paths{"target/saddle-target-0.csv", "target/saddle-target-1.csv", "target/saddle-target-2.csv",
                               "target/saddle-target-3.csv", "target/monkey-target-0.csv", "target/monkey-target-1.csv",
-                              "target/monkey-target-2.csv"};
+                              "target/monkey-target-2.csv", "target/monkey-target-3.csv", "target/monkey-target-4.csv",
+                              "target/monkey-target-5.csv", "target/monkey-target-6.csv"};
     fstream sp;
     fstream rp;
     fstream pp;
     int length, x, y, z;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 11; i++)
     {
         sp.open(sim_paths[i], fstream::in);
         sp >> length;

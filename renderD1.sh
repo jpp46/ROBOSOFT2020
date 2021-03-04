@@ -10,3 +10,5 @@ julia render.jl 1 1
 julia render.jl 1 2
 ./render.exe results/best/Bezier-D1-Seed-3.csv target/d1.csv.res
 julia render.jl 1 3
+./render.exe results/best/Bezier-D1-Seed-4.csv target/d1.csv.res
+julia render.jl 1 4

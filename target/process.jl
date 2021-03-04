@@ -37,3 +37,23 @@ file = open("monkey-2.csv", "r")
 arr = readdlm(file)
 arr = abs.(arr .- base_arr)
 writedlm("monkey-target-2.csv",  arr, ' ')
+
+file = open("monkey-3.csv", "r")
+arr = readdlm(file)
+arr = abs.(arr .- base_arr)
+writedlm("monkey-target-3.csv",  arr, ' ')
+
+file = open("monkey-4.csv", "r")
+arr = readdlm(file)
+arr = abs.(arr .- base_arr)
+writedlm("monkey-target-4.csv",  arr, ' ')
+
+file = open("monkey-5.csv", "r")
+arr = readdlm(file)
+arr = abs.(arr .- base_arr)
+writedlm("monkey-target-5.csv",  arr, ' ')
+
+file = open("monkey-6.csv", "r")
+arr = readdlm(file)
+arr = abs.(arr .- base_arr)
+writedlm("monkey-target-6.csv",  arr, ' ')
